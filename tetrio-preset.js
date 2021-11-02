@@ -191,7 +191,7 @@
 
   // custom CSS
   ;(() => {
-    const el = document.getElementById('customCss')
+    let el = document.getElementById('customCss')
     if (el) {
       el.parentElement.removeChild(el)
     }
