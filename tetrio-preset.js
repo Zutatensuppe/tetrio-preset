@@ -1,6 +1,9 @@
 ;(() => {
   console.log('tetrio preset loaded')
 
+  const created_elements = []
+  created_elements.push(document.querySelector('[src$="/tetrio-preset.js"]'))
+
   // fixing stuff by mapping them
   const fix = {
     'game.options.bagtype': {
@@ -120,6 +123,7 @@
     const wrapper = document.createElement('div')
     wrapper.classList.add('tetrio-preset-wrapper')
     document.body.appendChild(wrapper)
+    created_elements.push(wrapper)
 
     const component = {
       data() {
@@ -130,16 +134,20 @@
         }
       },
       template: `
-      <div class="wrapper">
-        <div v-if="presets.length">
+      <div class="tetrio-preset-widget">
+        <div v-if="presets.length" class="tetrio-preset-widget-row tetrio-preset-load-presets">
           <select v-model="selectedPreset">
             <option v-for="preset in presets">{{preset.name}}</option>
           </select>
           <button @click="onLoad">Load preset</button>
         </div>
-
-        <input type="text" v-model="presetName" />
-        <button @click="onSave">Save preset</button>
+        <div class="tetrio-preset-widget-row tetrio-preset-save-presets">
+          <input type="text" v-model="presetName" />
+          <button @click="onSave">Save preset</button>
+        </div>
+        <div class="tetrio-preset-widget-row tetrio-preset-close">
+          <button @click="onClose">Close</button>
+        </div>
       </div>
     `,
       methods: {
@@ -168,6 +176,13 @@
             this.selectedPreset = this.presets.length > 0 ? this.presets[0].name : ''
           }
         },
+        onClose() {
+          for (let el of created_elements) {
+            if (el) {
+              el.parentElement.removeChild(el)
+            }
+          }
+        },
       },
       mounted() {
         this.presets = load()
@@ -188,17 +203,36 @@
     init()
   });
   document.head.appendChild(vue);
+  created_elements.push(vue)
 
   // custom CSS
   ;(() => {
-    let el = document.getElementById('customCss')
+    let el = document.getElementById('tetrio-preset-custom-css')
     if (el) {
       el.parentElement.removeChild(el)
     }
     el = document.createElement("style")
-    el.id = 'customCss'
-    el.textContent = '.tetrio-preset-wrapper { background: white; position: fixed; z-index: 1000000; }'
+    el.id = 'tetrio-preset-custom-css'
+    el.textContent = `
+.tetrio-preset-wrapper {
+  background-color: #eee;
+  color: #222;
+  position: fixed;
+  z-index: 1000000;
+}
+.tetrio-preset-widget {
+  padding: .5em;
+}
+.tetrio-preset-widget-row:not(:last-child) {
+  margin-bottom: .5em;
+}
+.tetrio-preset-widget-row > *:not(:last-child) {
+  margin-right: 0.5em;
+}
+`
     document.head.appendChild(el)
+
+    created_elements.push(el)
   })()
 })()
 
