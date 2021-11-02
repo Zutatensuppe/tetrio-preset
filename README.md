@@ -1,5 +1,7 @@
 # Tetrio Preset
 
+Script/Bookmarklet to store/load custom multiplayer setting presets.
+
 Presets are stored in the browsers localStorage.
 
 Save as bookmarklet:
