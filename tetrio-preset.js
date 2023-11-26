@@ -177,7 +177,6 @@
     const component = {
       data() {
         return {
-          selectedPreset: '',
           presetName: 'New Preset',
           presets: [],
         }
@@ -185,10 +184,10 @@
       template: `
       <div class="tetrio-preset-widget">
         <div v-if="presets.length" class="tetrio-preset-widget-row tetrio-preset-load-presets">
-          <select v-model="selectedPreset">
-            <option v-for="preset in presets">{{preset.name}}</option>
-          </select>
-          <button @click="onLoad">Load preset</button>
+          <span v-for="preset in presets" class="tetrio-preset-item">
+            <span @click="loadPreset(preset)" class="tetrio-preset-item-name">{{ preset.name }}</span>
+            <span @click="removePreset(preset)" class="tetrio-preset-item-remove">×</span>
+          </span>
         </div>
         <div class="tetrio-preset-widget-row tetrio-preset-save-presets">
           <input type="text" v-model="presetName" />
@@ -200,15 +199,17 @@
       </div>
     `,
       methods: {
-        onLoad() {
-          console.log('loading preset', this.selectedPreset)
-          let idx = this.presets.findIndex(p => p.name === this.selectedPreset)
-          if (idx >= 0) {
-            write_preset_to_tetrio(this.presets[idx].preset)
-            console.log('finished writing preset to tetrio')
-          } else {
-            console.log('unable to find preset')
-          }
+        loadPreset(preset) {
+          console.log('loading preset', preset.name)
+          this.presetName = preset.name
+          write_preset_to_tetrio(preset.preset)
+          console.log('finished writing preset to tetrio')
+        },
+        removePreset(preset) {
+          console.log('removing preset', preset.name)
+          this.presets = this.presets.filter(p => p !== preset)
+          save(this.presets)
+          console.log('finished saving presets')
         },
         onSave() {
           console.log('saving preset', this.presetName)
@@ -277,6 +278,24 @@
 }
 .tetrio-preset-widget-row > *:not(:last-child) {
   margin-right: 0.5em;
+}
+.tetrio-preset-item {
+  border: solid 1px;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+.tetrio-preset-item-name {
+  cursor: pointer;
+}
+.tetrio-preset-item-remove {
+  border-radius: 100%;
+  background: darkgray;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  text-align: center;
+  margin-left: 5px;
+  cursor: pointer;
 }
 `
     document.head.appendChild(el)
