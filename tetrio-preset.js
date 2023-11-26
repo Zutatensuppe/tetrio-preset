@@ -35,7 +35,7 @@
       options: {
         stock: read_number('options.stock'),
 
-        presets: read_select('options.presets'),
+        // presets: read_select('options.presets'),
 
         bagtype: read_select('options.bagtype'),
 
@@ -84,16 +84,28 @@
   }
 
   const write_select = (index, value) => {
+    const currentValue = read_select(index)
+    if (currentValue === value) {
+      return
+    }
     document.querySelector(`[data-index="${index}"]`).click()
     document.querySelector(`[data-id="${value}"]`).click()
   }
   const write_checkbox = (index, value) => {
+    const currentValue = read_checkbox(index)
+    if (currentValue === value) {
+      return
+    }
     const el = document.querySelector(`[data-index="${index}"]`)
     if (el.checked !== value) {
       el.click()
     }
   }
   const write_number = (index, value) => {
+    const currentValue = read_number(index)
+    if (currentValue === value) {
+      return
+    }
     const el = document.querySelector(`[data-index="${index}"]`)
     el.value = value
     el.dispatchEvent(new Event('input'))
@@ -106,7 +118,7 @@
 
     write_number('options.stock', preset.options.stock)
 
-    write_select('options.presets', preset.options.presets)
+    // write_select('options.presets', preset.options.presets)
 
     write_select('options.bagtype', preset.options.bagtype)
 
@@ -148,7 +160,7 @@
     write_checkbox('options.b2bchaining', preset.options.b2bchaining)
     write_checkbox('options.allclears', preset.options.allclears)
     write_checkbox('options.clutch', preset.options.clutch)
-    
+
     write_select('options.passthrough', preset.options.passthrough)
   }
 
