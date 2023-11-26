@@ -27,10 +27,24 @@
 
   const read_preset_from_tetrio = () => {
     return {
+      match: {
+        gamemode: read_select('match.gamemode'),
+        ft: read_number('match.ft'),
+        wb: read_number('match.wb'),
+      },
       options: {
+        stock: read_number('options.stock'),
+
+        presets: read_select('options.presets'),
+
         bagtype: read_select('options.bagtype'),
+
         spinbonuses: read_select('options.spinbonuses'),
+
+        combotable: read_select('options.combotable'),
+
         allow180: read_checkbox('options.allow180'),
+
         kickset: read_select('options.kickset'),
         allow_harddrop: read_checkbox('options.allow_harddrop'),
         display_next: read_checkbox('options.display_next'),
@@ -43,6 +57,9 @@
         room_handling_arr: read_number('options.room_handling_arr'),
         room_handling_das: read_number('options.room_handling_das'),
         room_handling_sdf: read_number('options.room_handling_sdf'),
+        nolockout: read_checkbox('options.nolockout'),
+        boardwidth: read_number('options.boardwidth'),
+        boardheight: read_number('options.boardheight'),
 
         g: read_number('options.g'),
         gincrease: read_number('options.gincrease'),
@@ -55,11 +72,13 @@
         garbagecap: read_number('options.garbagecap'),
         garbagecapincrease: read_number('options.garbagecapincrease'),
         garbagecapmax: read_number('options.garbagecapmax'),
-
-        passthrough: read_checkbox('options.passthrough'),
+        garbageblocking: read_select('options.garbageblocking'),
         manual_allowed: read_checkbox('options.manual_allowed'),
         b2bchaining: read_checkbox('options.b2bchaining'),
+        allclears: read_checkbox('options.allclears'),
         clutch: read_checkbox('options.clutch'),
+
+        passthrough: read_select('options.passthrough'),
       },
     }
   }
@@ -81,9 +100,22 @@
   }
 
   const write_preset_to_tetrio = (preset) => {
+    write_select('match.gamemode', preset.match.gamemode)
+    write_number('match.ft', preset.match.ft)
+    write_number('match.wb', preset.match.wb)
+
+    write_number('options.stock', preset.options.stock)
+
+    write_select('options.presets', preset.options.presets)
+
     write_select('options.bagtype', preset.options.bagtype)
+
     write_select('options.spinbonuses', preset.options.spinbonuses)
+
+    write_select('options.combotable', preset.options.combotable)
+
     write_checkbox('options.allow180', preset.options.allow180)
+
     write_select('options.kickset', preset.options.kickset)
     write_checkbox('options.allow_harddrop', preset.options.allow_harddrop)
     write_checkbox('options.display_next', preset.options.display_next)
@@ -96,6 +128,10 @@
     write_number('options.room_handling_arr', preset.options.room_handling_arr)
     write_number('options.room_handling_das', preset.options.room_handling_das)
     write_number('options.room_handling_sdf', preset.options.room_handling_sdf)
+    write_checkbox('options.nolockout', preset.options.nolockout)
+    write_number('options.boardwidth', preset.options.boardwidth)
+    write_number('options.boardheight', preset.options.boardheight)
+
     write_number('options.g', preset.options.g)
     write_number('options.gincrease', preset.options.gincrease)
     write_number('options.gmargin', preset.options.gmargin)
@@ -107,10 +143,13 @@
     write_number('options.garbagecap', preset.options.garbagecap)
     write_number('options.garbagecapincrease', preset.options.garbagecapincrease)
     write_number('options.garbagecapmax', preset.options.garbagecapmax)
-    write_checkbox('options.passthrough', preset.options.passthrough)
+    write_select('options.garbageblocking', preset.options.garbageblocking)
     write_checkbox('options.manual_allowed', preset.options.manual_allowed)
     write_checkbox('options.b2bchaining', preset.options.b2bchaining)
+    write_checkbox('options.allclears', preset.options.allclears)
     write_checkbox('options.clutch', preset.options.clutch)
+    
+    write_select('options.passthrough', preset.options.passthrough)
   }
 
   const init = () => {
