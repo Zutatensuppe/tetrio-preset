@@ -6,7 +6,7 @@
 
   // fixing stuff by mapping them
   const fix = {
-    'game.options.bagtype': {
+    'options.bagtype': {
       '7bag': '7-bag',
     }
   }
@@ -27,41 +27,39 @@
 
   const read_preset_from_tetrio = () => {
     return {
-      game: {
-        options: {
-          bagtype: read_select('game.options.bagtype'),
-          spinbonuses: read_select('game.options.spinbonuses'),
-          allow180: read_checkbox('game.options.allow180'),
-          kickset: read_select('game.options.kickset'),
-          allow_harddrop: read_checkbox('game.options.allow_harddrop'),
-          display_next: read_checkbox('game.options.display_next'),
-          display_hold: read_checkbox('game.options.display_hold'),
-          nextcount: read_number('game.options.nextcount'),
-          display_shadow: read_checkbox('game.options.display_shadow'),
-          are: read_number('game.options.are'),
-          lineclear_are: read_number('game.options.lineclear_are'),
-          room_handling: read_checkbox('game.options.room_handling'),
-          room_handling_arr: read_number('game.options.room_handling_arr'),
-          room_handling_das: read_number('game.options.room_handling_das'),
-          room_handling_sdf: read_number('game.options.room_handling_sdf'),
+      options: {
+        bagtype: read_select('options.bagtype'),
+        spinbonuses: read_select('options.spinbonuses'),
+        allow180: read_checkbox('options.allow180'),
+        kickset: read_select('options.kickset'),
+        allow_harddrop: read_checkbox('options.allow_harddrop'),
+        display_next: read_checkbox('options.display_next'),
+        display_hold: read_checkbox('options.display_hold'),
+        nextcount: read_number('options.nextcount'),
+        display_shadow: read_checkbox('options.display_shadow'),
+        are: read_number('options.are'),
+        lineclear_are: read_number('options.lineclear_are'),
+        room_handling: read_checkbox('options.room_handling'),
+        room_handling_arr: read_number('options.room_handling_arr'),
+        room_handling_das: read_number('options.room_handling_das'),
+        room_handling_sdf: read_number('options.room_handling_sdf'),
 
-          g: read_number('game.options.g'),
-          gincrease: read_number('game.options.gincrease'),
-          gmargin: read_number('game.options.gmargin'),
-          garbagemultiplier: read_number('game.options.garbagemultiplier'),
-          garbagemargin: read_number('game.options.garbagemargin'),
-          garbageincrease: read_number('game.options.garbageincrease'),
-          locktime: read_number('game.options.locktime'),
-          garbagespeed: read_number('game.options.garbagespeed'),
-          garbagecap: read_number('game.options.garbagecap'),
-          garbagecapincrease: read_number('game.options.garbagecapincrease'),
-          garbagecapmax: read_number('game.options.garbagecapmax'),
+        g: read_number('options.g'),
+        gincrease: read_number('options.gincrease'),
+        gmargin: read_number('options.gmargin'),
+        garbagemultiplier: read_number('options.garbagemultiplier'),
+        garbagemargin: read_number('options.garbagemargin'),
+        garbageincrease: read_number('options.garbageincrease'),
+        locktime: read_number('options.locktime'),
+        garbagespeed: read_number('options.garbagespeed'),
+        garbagecap: read_number('options.garbagecap'),
+        garbagecapincrease: read_number('options.garbagecapincrease'),
+        garbagecapmax: read_number('options.garbagecapmax'),
 
-          passthrough: read_checkbox('game.options.passthrough'),
-          manual_allowed: read_checkbox('game.options.manual_allowed'),
-          b2bchaining: read_checkbox('game.options.b2bchaining'),
-          clutch: read_checkbox('game.options.clutch'),
-        },
+        passthrough: read_checkbox('options.passthrough'),
+        manual_allowed: read_checkbox('options.manual_allowed'),
+        b2bchaining: read_checkbox('options.b2bchaining'),
+        clutch: read_checkbox('options.clutch'),
       },
     }
   }
@@ -83,36 +81,36 @@
   }
 
   const write_preset_to_tetrio = (preset) => {
-    write_select('game.options.bagtype', preset.game.options.bagtype)
-    write_select('game.options.spinbonuses', preset.game.options.spinbonuses)
-    write_checkbox('game.options.allow180', preset.game.options.allow180)
-    write_select('game.options.kickset', preset.game.options.kickset)
-    write_checkbox('game.options.allow_harddrop', preset.game.options.allow_harddrop)
-    write_checkbox('game.options.display_next', preset.game.options.display_next)
-    write_checkbox('game.options.display_hold', preset.game.options.display_hold)
-    write_number('game.options.nextcount', preset.game.options.nextcount)
-    write_checkbox('game.options.display_shadow', preset.game.options.display_shadow)
-    write_number('game.options.are', preset.game.options.are)
-    write_number('game.options.lineclear_are', preset.game.options.lineclear_are)
-    write_checkbox('game.options.room_handling', preset.game.options.room_handling)
-    write_number('game.options.room_handling_arr', preset.game.options.room_handling_arr)
-    write_number('game.options.room_handling_das', preset.game.options.room_handling_das)
-    write_number('game.options.room_handling_sdf', preset.game.options.room_handling_sdf)
-    write_number('game.options.g', preset.game.options.g)
-    write_number('game.options.gincrease', preset.game.options.gincrease)
-    write_number('game.options.gmargin', preset.game.options.gmargin)
-    write_number('game.options.garbagemultiplier', preset.game.options.garbagemultiplier)
-    write_number('game.options.garbagemargin', preset.game.options.garbagemargin)
-    write_number('game.options.garbageincrease', preset.game.options.garbageincrease)
-    write_number('game.options.locktime', preset.game.options.locktime)
-    write_number('game.options.garbagespeed', preset.game.options.garbagespeed)
-    write_number('game.options.garbagecap', preset.game.options.garbagecap)
-    write_number('game.options.garbagecapincrease', preset.game.options.garbagecapincrease)
-    write_number('game.options.garbagecapmax', preset.game.options.garbagecapmax)
-    write_checkbox('game.options.passthrough', preset.game.options.passthrough)
-    write_checkbox('game.options.manual_allowed', preset.game.options.manual_allowed)
-    write_checkbox('game.options.b2bchaining', preset.game.options.b2bchaining)
-    write_checkbox('game.options.clutch', preset.game.options.clutch)
+    write_select('options.bagtype', preset.options.bagtype)
+    write_select('options.spinbonuses', preset.options.spinbonuses)
+    write_checkbox('options.allow180', preset.options.allow180)
+    write_select('options.kickset', preset.options.kickset)
+    write_checkbox('options.allow_harddrop', preset.options.allow_harddrop)
+    write_checkbox('options.display_next', preset.options.display_next)
+    write_checkbox('options.display_hold', preset.options.display_hold)
+    write_number('options.nextcount', preset.options.nextcount)
+    write_checkbox('options.display_shadow', preset.options.display_shadow)
+    write_number('options.are', preset.options.are)
+    write_number('options.lineclear_are', preset.options.lineclear_are)
+    write_checkbox('options.room_handling', preset.options.room_handling)
+    write_number('options.room_handling_arr', preset.options.room_handling_arr)
+    write_number('options.room_handling_das', preset.options.room_handling_das)
+    write_number('options.room_handling_sdf', preset.options.room_handling_sdf)
+    write_number('options.g', preset.options.g)
+    write_number('options.gincrease', preset.options.gincrease)
+    write_number('options.gmargin', preset.options.gmargin)
+    write_number('options.garbagemultiplier', preset.options.garbagemultiplier)
+    write_number('options.garbagemargin', preset.options.garbagemargin)
+    write_number('options.garbageincrease', preset.options.garbageincrease)
+    write_number('options.locktime', preset.options.locktime)
+    write_number('options.garbagespeed', preset.options.garbagespeed)
+    write_number('options.garbagecap', preset.options.garbagecap)
+    write_number('options.garbagecapincrease', preset.options.garbagecapincrease)
+    write_number('options.garbagecapmax', preset.options.garbagecapmax)
+    write_checkbox('options.passthrough', preset.options.passthrough)
+    write_checkbox('options.manual_allowed', preset.options.manual_allowed)
+    write_checkbox('options.b2bchaining', preset.options.b2bchaining)
+    write_checkbox('options.clutch', preset.options.clutch)
   }
 
   const init = () => {
